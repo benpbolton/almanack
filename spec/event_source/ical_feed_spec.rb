@@ -18,7 +18,7 @@ module Almanack::EventSource
 
         start_times = events.map(&:start_time)
 
-        expect(events.length).to eq(15)
+        expect(events.length).to eq(14)
         expect(events).to all_have_properties(:title, :start_time, :end_time, :description, :location)
       end
     end

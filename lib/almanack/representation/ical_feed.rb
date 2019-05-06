@@ -35,12 +35,17 @@ module Almanack
         ical_event = RiCal.Event
         ical_event.summary = event.title
 
-        ical_event.dtstart = event.start_time.is_a?(Time) ? event.start_time.utc : event.start_time;
-        ical_event.dtend = event.end_time.is_a?(Time) ? event.end_time.utc :
-        if event.end_time.present?
-          ical_event.dtend = event.end_time.is_a?(Time) ? event.end_time.utc : event.end_time;
+        if event.start_time.is_a?(DateTime)
+          ical_event.dtstart = event.start_time.new_offset('+00:00')
         elsif event.start_time.is_a?(Time)
-          ical_event.dtend = (event.start_time + default_event_duration ).utc
+          ical_event.dtstart = event.start_time.utc
+        elsif event.start_time.is_a?(Date)
+          ical_event.dtstart = event.start_time;
+        end
+        if (event.end_time.present? && event.end_time.is_a?(DateTime)) || event.start_time.is_a?(DateTime)
+          ical_event.dtend = (event.end_time || event.start_time + default_event_duration ).new_offset('+00:00')
+        elsif (event.end_time.present? && event.end_time.is_a?(Time)) || event.start_time.is_a?(Time)
+          ical_event.dtend = (event.end_time || event.start_time + default_event_duration ).utc
         end
 
         ical_event.description = event.description if event.description

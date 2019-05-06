@@ -46,6 +46,8 @@ module Almanack
           ical_event.dtend = (event.end_time || event.start_time + default_event_duration ).new_offset('+00:00')
         elsif (event.end_time.present? && event.end_time.is_a?(Time)) || event.start_time.is_a?(Time)
           ical_event.dtend = (event.end_time || event.start_time + default_event_duration ).utc
+        elsif (event.end_time.present? && event.end_time.is_a?(Date))
+          ical_event.dtend = event.end_time
         end
 
         ical_event.description = event.description if event.description

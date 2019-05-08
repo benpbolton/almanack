@@ -6,6 +6,7 @@ module Almanack
     def_delegators :@config, :event_sources,
                              :title,
                              :days_lookahead,
+                             :days_lookbehind,
                              :feed_lookahead
 
     def initialize(config)
@@ -14,8 +15,9 @@ module Almanack
 
     def events
       now = Time.now
+      past = now - days_lookbehind * ONE_DAY
       future = now + days_lookahead * ONE_DAY
-      events_between(now..future)
+      events_between(past..future)
     end
 
     def events_between(date_range)

@@ -5,6 +5,7 @@ module Almanack
     CACHE_DIR = "tmp"
     DEFAULT_THEME = "legacy"
     DEFAULT_DAYS_LOOKAHEAD = 30
+    DEFAULT_DAYS_LOOKBEHIND = 30
     DEFAULT_FEED_LOOKAHEAD = 365
     DEFAULT_CACHE_RESPONSES = false
     DEFAULT_CACHE_EXPIRY = 900
@@ -15,6 +16,7 @@ module Almanack
                   :theme_paths,
                   :theme_root,
                   :days_lookahead,
+                  :days_lookbehind,
                   :feed_lookahead,
                   :cache_responses,
                   :cache_expiry
@@ -33,6 +35,7 @@ module Almanack
     def reset!
       @theme           = DEFAULT_THEME
       @days_lookahead  = DEFAULT_DAYS_LOOKAHEAD
+      @days_lookbehind  = DEFAULT_DAYS_LOOKAHEAD
       @feed_lookahead  = DEFAULT_FEED_LOOKAHEAD
       @event_sources   = []
       @cache_responses = DEFAULT_CACHE_RESPONSES

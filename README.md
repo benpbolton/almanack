@@ -54,7 +54,10 @@ See examples inside `config.ru` for iCal feeds, Meetup.com, or static events.
 Almanack.config do |c|
   c.title = 'My Calendar'
   c.theme = 'my-custom-theme'
+  c.days_lookbehind = 0
   c.days_lookahead = 30
+  c.feed_lookbehind = 30
+  c.feed_lookahead = 100
   c.add_ical_feed 'http://example.org/events.ics'
   c.add_ical_feed 'http://example.org/more-events.ics'
   c.add_meetup_group group_urlname: 'Christchurch-Ruby-Group', key: 'mysecretkey'

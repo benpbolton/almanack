@@ -26,7 +26,7 @@ module Almanack
       end
 
       def date_range
-        now..lookahead
+        lookbehind..lookahead
       end
 
       def serialized
@@ -41,6 +41,10 @@ module Almanack
 
       def event_sources
         calendar.event_sources
+      end
+
+      def lookbehind
+        now - calendar.feed_lookbehind * ONE_DAY
       end
 
       def lookahead

@@ -22,7 +22,7 @@ module Almanack
       private
 
       def events
-        calendar.events_between(now..lookahead)
+        calendar.events_between(lookbehind..lookahead)
       end
 
       def ical_calendar
@@ -57,6 +57,10 @@ module Almanack
 
       def lookahead
         now + calendar.feed_lookahead * ONE_DAY
+      end
+
+      def lookbehind
+        now - calendar.feed_lookbehind * ONE_DAY
       end
 
       def default_event_duration

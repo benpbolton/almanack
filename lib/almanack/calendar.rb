@@ -7,7 +7,8 @@ module Almanack
                              :title,
                              :days_lookahead,
                              :days_lookbehind,
-                             :feed_lookahead
+                             :feed_lookahead,
+                             :feed_lookbehind
 
     def initialize(config)
       @config = config
